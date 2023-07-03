@@ -1,0 +1,7 @@
+id,name_zh,name_en,physique,strength,agility,refining_equipment,refining_pills,cultivation
+AF,炼丹失败,fail,-1,,,,-1,
+BF,修炼失败,fail,-1,,,,,-1
+AAF,炼丹失败,fail,-1,,,,-1,
+ABF,请求失败,fail,,,,,,
+BAF,炼丹失败,fail,-1,-2,,,,
+BBF,炼丹失败,fail,-2,,,,,
