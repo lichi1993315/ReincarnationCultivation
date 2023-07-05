@@ -5,9 +5,10 @@ using System.Collections;
 
 namespace ReincarnationCultivation
 {
-    public class Dialog : MonoBehaviour
+    public class DialogUI : MonoBehaviour
     {
         public Image characterUI;
+        public TextMeshProUGUI characterNameUI;
         public TextMeshProUGUI textUI;
         /// <summary>
         /// 文本播放结束的事件
@@ -26,16 +27,17 @@ namespace ReincarnationCultivation
         [ContextMenu("Test")]
         void Test()
         {
-            ShowDialog(text,null);
+            ShowDialog(text,null,"测试角色");
         }
 
-        public void ShowDialog(string content,Sprite character)
+        public void ShowDialog(string content,Sprite character,string characterName)
         {
             StopAllCoroutines();
             textUI.text = "";
             text = content;
             characterUI.sprite = character;
             characterUI.enabled = character!=null;
+            characterNameUI.text = characterName??"";
             interval = normalInterval;
             enabled = true;
             StartCoroutine(ShowText(content));

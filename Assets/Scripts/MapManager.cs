@@ -33,7 +33,7 @@ namespace ReincarnationCultivation
         {
             currentMap = world;
         }
-        void EnterRegion( Region region)
+        void EnterRegion( Region region )
         {
             currentMap = region.gameObject;
         }

@@ -10,6 +10,7 @@ namespace ReincarnationCultivation
         {
             public string content;
             public Sprite character;
+            public string characterName;
         }
         public DialogInfo[] dialogInfos;
 
@@ -18,7 +19,7 @@ namespace ReincarnationCultivation
         {
             ShowDialog(dialogInfos);
         }
-        public Dialog dialogUI;
+        public DialogUI dialogUI;
         /// <summary>
         /// 文本播放结束的事件
         /// </summary>
@@ -28,8 +29,14 @@ namespace ReincarnationCultivation
         /// </summary>
         public System.Action OnEndClick = ()=>Debug.Log("DialogList.OnEndClick");
 
+        public void Hide()
+        {
+            gameObject.SetActive(false);
+        }
+
         public void ShowDialog(DialogInfo[] dialogInfos)
         {
+            gameObject.SetActive(true);
             dialogUI.gameObject.SetActive(true);
             var current = 0;
             dialogUI.OnEndClick = ()=>{
@@ -54,7 +61,7 @@ namespace ReincarnationCultivation
         }
         void ShowDialog(DialogInfo dialogInfo)
         {
-            dialogUI.ShowDialog(dialogInfo.content,dialogInfo.character);
+            dialogUI.ShowDialog(dialogInfo.content,dialogInfo.character,dialogInfo.characterName);
         }
     }
 }
