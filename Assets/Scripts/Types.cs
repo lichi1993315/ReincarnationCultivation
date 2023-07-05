@@ -95,4 +95,35 @@ namespace ReincarnationCultivation.Type
         public string id;
         public NpcConfig[] npc;
     }
+    
+    [System.Serializable]
+    public class NpcStoryConfig:IdConfig
+    {
+        string IdConfig.id {get=>id;}
+        [System.Serializable]
+        public class MissionConfig
+        {
+            public string type;
+            public string name_zh;
+            public string name_en;
+            public string condition;
+            public CharacterAttribute? attribute;
+            public int? threshold;
+            public string succeedId;
+            public string failId;
+            public string awardId;
+            public string punishId;
+        }
+        [System.Serializable]
+        public class DialogueConfig
+        {
+            public string[] content_zh;
+            public string[] content_en;
+            public MissionConfig mission;
+        }
+        
+        public string id;
+        public string regionId;
+        public DialogueConfig[] dialogue;
+    }
 }

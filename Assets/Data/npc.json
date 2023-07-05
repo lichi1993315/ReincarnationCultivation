@@ -1,0 +1,243 @@
+[
+    {
+        "id": "alchemist",
+        "regionId": "alchemey_house",
+        "dialogue": [
+            {
+                "content_zh": [
+                    "作为一位炼丹师，我很高兴你来找我寻求任务。如果你希望变得更强，炼丹是一条可行的路径。",
+                    "我可以帮助你通过炼制药丸来提升你的修为。但在开始任务之前，我需要你提供一些炼丹所需的材料。",
+                    "根据你的修为和目标，我建议你搜集一些稀有的草药和矿石。你可以在远古山脉和神秘森林中寻找它们。",
+                    "请注意，这些材料在野外有一定的危险性，并且它们可能只能在特定的地方和时间出现。",
+                    "一旦你收集到足够的材料，回来找我，我将指导你如何进行炼制。",
+                    "记住，炼丹过程需要耐心和精确性，所以请务必按照我的指导来操作，以确保炼制出高品质的药丸。",
+                    "完成这个任务后，你将获得你所期望的提升修为的机会。我期待着看到你变得更加强大。祝你好运！"
+                ],
+                "content_en": [
+                    "As an alchemist, I am pleased that you have come to me for a quest. If you desire to become stronger, alchemy is a viable path.",
+                    "I can assist you in elevating your cultivation through the refinement of pills. However, before we begin the quest, I require you to provide me with certain alchemical materials.",
+                    "Based on your cultivation level and goals, I suggest you gather some rare herbs and ores. You can find them in the ancient mountains and mysterious forests. Please be aware that these materials can be dangerous to acquire in the wild, and they may only appear in specific locations and times.",
+                    "Once you've collected enough materials, return to me, and I will guide you on how to perform the refinement process. Remember, alchemy requires patience and precision, so it's crucial to follow my instructions to ensure the creation of high-quality pills.",
+                    "Upon completing this quest, you will have the opportunity to enhance your cultivation as desired. I look forward to witnessing your growth and inner strength. Good luck!"
+                ],
+                "mission": {
+                    "type": "采药",
+                    "name_zh": "收集药材,炼制生骨丹",
+                    "name_en": "Collect medicinal herbs and refine the Bone Revitalizing Pill",
+                    "condition": "",
+                    "attribute": "agility",
+                    "threshold": "2",
+                    "succeedId": "AS",
+                    "failId": "AF",
+                    "awardId": "AS",
+                    "punishId": "AF"
+                }
+            },
+            {
+                "content_zh": [
+                    "作为一个炼丹师，我非常欣赏你上次成功完成任务并通过服用丹药变强。",
+                    "然而，我必须提醒你，这次的丹药与上次不同。它蕴含着一种妖气，可能会对你的修为产生负面影响。",
+                    "虽然你心性有所提升，但还需要进一步加强你的炼丹水平，才能有效地抵御妖气的侵袭。",
+                    "这次的丹药属于高阶级别，需要更多的耐心和精确度来进行炼制。我强烈建议你在服用之前，先提高自己的炼丹水平，以确保你能够对抗妖气的反攻。",
+                    "炼丹的过程中，一丝不慢的仔细操作非常重要。如果你需要更多的指导和帮助，我将非常乐意为你提供。",
+                    "但请记住，炼丹是一门细致而艰难的技艺，不要急于求成。只有在充分了解并且具备足够的修为之后，才能安全地尝试五座殿的炼制技巧。",
+                    "不要为了一时的好处而忽略了危险的后果。希望你能谨慎行事，耐心地跟随我的指导，以便安全并且有效地提高你的修为。"
+                ],
+                "content_en": [
+                    "As an alchemist, I greatly appreciate your successful completion of the previous task and the enhancement of your strength through consuming the pill.",
+                    "However, I must caution you that this time the pill contains a demonic aura, which may have adverse effects on your cultivation.",
+                    "While your mental cultivation has improved, it is necessary to further strengthen your alchemy skills to effectively resist the backlash of demonic energy.",
+                    "The pill you seek to refine this time is of a higher level and requires more patience and precision in the refinement process.",
+                    "I strongly advise you to enhance your alchemy skills before consuming it, to ensure that you can withstand the counterattack of demonic energy.",
+                    "Careful and precise operation during the alchemy process is crucial.",
+                    "I am more than willing to provide you with further guidance and assistance if needed.",
+                    "However, please bear in mind that alchemy is a meticulous and challenging art.",
+                    "Do not rush for immediate gains and overlook the potential dangers.",
+                    "Only when you have sufficient cultivation and understanding, can you safely attempt the refinement techniques of the Five Mansions.",
+                    "Neglecting caution might lead to adverse consequences.",
+                    "I hope you will proceed with caution, patiently follow my guidance, and safely and effectively enhance your cultivation."
+                ],
+                "mission": {
+                    "type": "炼丹",
+                    "name_zh": "炼制洗髓丹,并驱逐妖气",
+                    "name_en": "Refine the Marrow Cleansing Pill and expel demonic energy",
+                    "condition": "refining_pills>3",
+                    "attribute": "refining_pills",
+                    "threshold": "7",
+                    "succeedId": "AAS",
+                    "failId": "AAF",
+                    "awardId": "AAS",
+                    "punishId": "AAF"
+                }
+            },
+            {
+                "content_zh": [
+                    "我非常欣赏你的努力与天赋。",
+                    "在你修炼了五府锻元诀之后，你的修为展现出惊人的进步，确实让我感到惊讶不已。",
+                    "然而，关于你对更高级别丹药的需求，我必须谨慎考虑。",
+                    "你提到了阴性功法的问题，这的确是一个需要解决的重要问题。",
+                    "龙虎丹确实是一种能够帮助调和阴阳之力的神奇丹药。",
+                    "然而，它对力量的要求相当高，如果你的力量未达到标准，服用龙虎丹后可能会引发严重的后果，导致七窍流血而亡。",
+                    "为了确保你的安全和成功修炼，我强烈建议你在服用龙虎丹之前，先修炼出强大的力量。",
+                    "只有拥有足够的力量，你才能更好地承受龙虎丹带来的力量冲击。",
+                    "这样做可以大大提高你修炼成功的机率，保障你的安全。",
+                    "因此，我建议你与其他修炼相关功法的高手进行交流，了解他们在修炼力量方面的经验和心得。",
+                    "只有通过不断地修炼和增强力量，你才能够在修炼洗髓丹时大放异彩。",
+                    "我的朋友，你的安全和稳定的修炼对我来说至关重要。",
+                    "我会持续寻找最适合你的修炼方法，并确保你的修炼旅程是安全而稳定的。",
+                    "请告诉我你的期望和目标，我会继续为你寻找最合适的功法。",
+                    "无论如何，安全和稳定的进步永远是最重要的。"
+                ],
+                "content_en": [
+                    "I greatly appreciate your efforts and talents.",
+                    "After cultivating the Five Mansion Cultivation Technique, your progress has been astonishing, truly surprising me.",
+                    "However, I must be cautious regarding your request for higher-level elixirs.",
+                    "You mentioned the issue of Yin-based cultivation, which is indeed an important matter to address.",
+                    "The Bull's Protection Art is indeed a remarkable elixir that can help balance Yin and Yang energies.",
+                    "However, it demands a high level of strength.",
+                    "If your strength does not meet the requirements and you consume the elixir, it could have severe consequences, possibly resulting in bleeding from the seven orifices and death.",
+                    "To ensure your safety and successful cultivation, I strongly recommend that you first cultivate powerful strength before taking the Bull's Protection Art.",
+                    "Only with sufficient strength can you better endure the impact of the elixir.",
+                    "By doing so, you greatly increase your chances of successful cultivation and ensure your safety.",
+                    "Therefore, I suggest that you engage in discussions with experts in other cultivation techniques related to strength.",
+                    "Learn from their experiences and insights in cultivating strength.",
+                    "Only through consistent cultivation and strengthening of your power can you truly shine in your cultivation of the Bull's Protection Art.",
+                    "My friend, your safety and steady progress are of utmost importance to me.",
+                    "I will continue to search for the most suitable cultivation method for you and ensure that your cultivation journey is safe and stable.",
+                    "Please share with me your expectations and goals, and I will continue to search for the most appropriate technique.",
+                    "Nonetheless, safety and steady progress will always be the top priorities."
+                ],
+                "mission": {
+                    "type": "修炼",
+                    "name_zh": "修炼力量,并练成龙虎丹",
+                    "name_en": "Cultivate strength and refine the Dragon-Tiger Pill",
+                    "condition": "strength>8",
+                    "attribute": "strength",
+                    "threshold": "7",
+                    "succeedId": "BAS",
+                    "failId": "BAF",
+                    "awardId": "BAS",
+                    "punishId": "BAF"
+                }
+            }
+        ]
+    },
+    {
+        "id": "bookkeeper",
+        "regionId": "book_house",
+        "dialogue": [
+            {
+                "content_zh": [
+                    "作为天机阁长老和藏经阁管家，我非常乐意为你提供帮助。五府锻元诀是一种非常强大的功法，但它确实需要修为充沛、有所领悟的人才能够顺利修炼。",
+                    "如果你的修为不到位，贸然修炼该功法可能会导致修为倒退，甚至受到损害。因此，在你开始修炼之前，我强烈建议你先提升自己的修为。",
+                    "确保你达到一定的境界，并且具备足够的体魄和精神力量，才能够充分吸收和驾驭五府锻元诀的力量。另外，修炼五府锻元诀是一项需要耐心和精准度的过程。",
+                    "只有在你专注于修炼过程，并且按照正确的方法和步骤进行时，才能够真正发挥功法的威力。如果你冒然行事或者过于急躁，可能会导致功法效果不佳，甚至走火入魔。",
+                    "因此，请在修炼五府锻元诀时，保持专注和耐心。严格遵循我的指导和要求，确保每个步骤都准确无误。只有这样，你才能真正获得提升修为的机会，并且在修炼过程中确保自身的安全。",
+                    "如果你对五府锻元诀的修炼有任何问题或者需要更多指导，随时来找我，我会尽力帮助你。祝你修炼之旅一帆风顺，成为更强大的修仙者！"
+                ],
+                "content_en": [
+                    "As an Elder of the Celestial Mechanism Pavilion and the steward of the Scripture Repository, I am more than willing to assist you. ",
+                    "The Five Mansions' Refinement Technique is a powerful cultivation method, but it indeed requires a sufficient cultivation level and comprehension to practice it successfully.",
+                    "If your cultivation is not up to par, hastily practicing this technique may actually result in a decline in your cultivation or even harm to your spiritual foundation.",
+                    "Therefore, before you embark on practicing this technique, I strongly recommend that you first enhance your cultivation.",
+                    "Ensure that you reach a certain realm and possess sufficient physical and spiritual strength to fully absorb and control the power of the Five Mansions' Refinement Technique. ",
+                    "Additionally, practicing the Five Mansions' Refinement Technique is a process that requires patience and precision.",
+                    "Only by devoting your full focus to the cultivation process and following the correct methods and steps can you truly unleash the power of this technique.",
+                    "Acting recklessly or being too impatient may lead to suboptimal results or even deviation from the righteous path. Thus, please maintain focus and patience while practicing the Five Mansions' Refinement Technique. ",
+                    "Strictly adhere to my guidance and instructions to ensure every step is precise and accurate. Only in doing so can you truly seize the opportunity to enhance your cultivation and ensure your safety throughout the practice.",
+                    "If you have any questions or need further guidance regarding the cultivation of the Five Mansions' Refinement Technique, feel free to approach me at any time. ",
+                    "I will do my utmost to assist you. May your cultivation journey be smooth and may you become a stronger cultivator!"
+                ],
+                "mission": {
+                    "type": "练功",
+                    "name_zh": "修炼功法",
+                    "name_en": "Cultivate martial arts techniques",
+                    "condition": "cultivation>6",
+                    "attribute": "cultivation",
+                    "threshold": "9",
+                    "succeedId": "BS",
+                    "failId": "BF",
+                    "awardId": "BS",
+                    "punishId": "BF"
+                }
+            },
+            {
+                "content_zh": [
+                    "作为天机阁的长老和藏经阁的管家，我专注于寻找适合他人修炼的正统功法。",
+                    "然而，我遗憾地告诉你，我坚决抵制炼丹术，因为我认为它属于歪门邪道。",
+                    "我注意到你曾经服用过丹药来增强自己的力量，这种行为我视为懦夫之举，缺乏真正的修行精神。",
+                    "因此，我无法向你传授任何功法。",
+                    "在修仙之道上，真正的实力来自内心的修炼和悟道，而不是依靠外力的辅助。",
+                    "将依赖于丹药和其他外部物品来提高修为的做法，只会让你陷入迷茫和依赖。",
+                    "我希望你能明白我的立场，并开始寻求更加正统和纯粹的修行方法。",
+                    "只有通过坚持不懈的努力和对自身的探索，你才能真正变得强大。",
+                    "如果你对此有任何质疑或需要帮助，我仍愿意提供指导和建议，但我将坚守我的原则，不会向你传授炼丹术或任何依赖外力的功法。",
+                    "祝你在修为之路上找到真正的力量。"
+                ],
+                "content_en": [
+                    "As an elder of the Heavenly Secret Pavilion and the steward of the Scripture Pavilion, my focus is on finding orthodox cultivation methods suitable for others.",
+                    "However, I regret to inform you that I strongly oppose alchemy, as I consider it to be a crooked path.",
+                    "I have noticed that you have previously consumed pills to enhance your own strength.",
+                    "I view this as an act of cowardice, lacking in true cultivation spirit.",
+                    "Therefore, I cannot impart any cultivation methods to you.",
+                    "In the path of immortal cultivation, true strength comes from inner cultivation and enlightenment, rather than relying on external aids.",
+                    "Relying on pills and other external items to improve one's cultivation will only lead to confusion and dependency.",
+                    "I hope you can understand my stance and begin seeking more orthodox and pure cultivation methods.",
+                    "It is only through persistent effort and self-exploration that you can truly become powerful.",
+                    "If you have any doubts or need assistance in this matter, I am still willing to offer guidance and advice.",
+                    "However, I will adhere to my principles and refrain from teaching you alchemy or any cultivation methods that rely on external aids.",
+                    "I wish you find true power on your path of cultivation."
+                ],
+                "mission": {
+                    "type": "",
+                    "name_zh": "",
+                    "name_en": "",
+                    "succeedId": "ABF",
+                    "failId": "ABF",
+                    "awardId": "ABF",
+                    "punishId": "ABF"
+                }
+            },
+            {
+                "content_zh": [
+                    "作为天机阁长老和藏经阁管家，我的责任是确保每个修行者得到最适合他们的功法。",
+                    "我很高兴看到你能成功修炼五府锻元诀，展示了你惊人的潜力。",
+                    "然而，我必须强调蛮牛护体决的风险和对体质的要求。",
+                    "这是一种非常强大但危险的功法，体质不符合标准的人可能会面临生命的危险。",
+                    "因此，在为你推荐此功法之前，我们需要对你的身体状况进行评估。",
+                    "这样可以确保你的安全和稳定。",
+                    "通过与修炼相关功法的人进行交流论道，你可以获取关于蛮牛护体决的更多信息，并了解别的可能更适合你的选择。",
+                    "这种交流可以帮助你更好地了解风险和需要付出的努力。",
+                    "我们的目标是在确保你的安全和稳定的前提下，让你实现自己变强的愿望。",
+                    "请告诉我你的期望和目标，我会努力寻找最适合你的功法。",
+                    "我们希望你在修行的道路上取得稳定而持续的进步。"
+                ],
+                "content_en": [
+                    "As an Elder of the Tianji Pavilion and the custodian of the scripture library, it is my responsibility to ensure that each cultivator receives the most suitable cultivation technique.",
+                    "I am delighted to see that you have successfully cultivated the Five Mansion Cultivation Technique, showcasing your astounding potential.",
+                    "However, I must emphasize the risks and physical requirements associated with the Bull's Protection Art.",
+                    "It is a powerful yet dangerous technique, and those whose physique does not meet the standards may face life-threatening dangers.",
+                    "Therefore, before recommending this technique to you, we need to assess your physical condition.",
+                    "This is to ensure your safety and stability.",
+                    "By engaging in discussions and exchanging insights with practitioners who are familiar with related techniques, you can gather more information about the Bull's Protection Art and explore other options that may be more suitable for you.",
+                    "This exchange can help you gain a better understanding of the risks and efforts involved.",
+                    "Our goal is to help you fulfill your desire for strength while ensuring your safety and stability.",
+                    "Please share your expectations and goals so that I can diligently seek out the most suitable technique for you.",
+                    "We hope to see you make steady and consistent progress on your cultivation journey."
+                ],
+                "mission": {
+                    "type": "论道",
+                    "name_zh": "与他人讨论功法",
+                    "name_en": "Discuss martial arts techniques with others",
+                    "condition": "physique>4",
+                    "attribute": "physique",
+                    "threshold": "8",
+                    "succeedId": "BBS",
+                    "failId": "BBF",
+                    "awardId": "BBS",
+                    "punishId": "BBF"
+                }
+            }
+        ]
+    }
+]
