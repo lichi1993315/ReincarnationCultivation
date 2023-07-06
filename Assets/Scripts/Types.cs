@@ -1,9 +1,12 @@
+using UnityEngine;
+
 namespace ReincarnationCultivation.Type
 {
     public interface IdConfig
     {
         string id{get;}
     }
+    
     public class ItemConfig:IdConfig
     {
         string IdConfig.id {get=>id;}
@@ -16,6 +19,7 @@ namespace ReincarnationCultivation.Type
         public int? refining_equipment;
         public int? refining_pills;
         public int? cultivation;
+        public Sprite icon;
     }
     public class FailConfig:IdConfig
     {
@@ -43,6 +47,8 @@ namespace ReincarnationCultivation.Type
         public string id;
         public string name_zh;
         public string name_en;
+        public Sprite portrait;
+        public Sprite mapIcon;
     }
     public enum CharacterAttribute
     {

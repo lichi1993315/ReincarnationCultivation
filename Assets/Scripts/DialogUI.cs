@@ -30,17 +30,27 @@ namespace ReincarnationCultivation
             ShowDialog(text,null,"测试角色");
         }
 
-        public void ShowDialog(string content,Sprite character,string characterName)
+        /// <summary>
+        /// 保持原有的角色设置,显示接下来的文字
+        /// </summary>
+        /// <param name="dialog"></param>
+        public void ContinueDialog(string content)
         {
             StopAllCoroutines();
             textUI.text = "";
             text = content;
-            characterUI.sprite = character;
-            characterUI.enabled = character!=null;
-            characterNameUI.text = characterName??"";
             interval = normalInterval;
             enabled = true;
             StartCoroutine(ShowText(content));
+        }
+
+
+        public void ShowDialog(string content,Sprite character,string characterName)
+        {
+            characterUI.sprite = character;
+            characterUI.enabled = character!=null;
+            characterNameUI.text = characterName??"";
+            ContinueDialog(content);
         }
 
         IEnumerator ShowText(string content)

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace ReincarnationCultivation
 {
@@ -7,7 +8,10 @@ namespace ReincarnationCultivation
         public System.Action OnClick;
         void OnMouseDown() 
         {
-            OnClick?.Invoke();
+            if(! EventSystem.current.IsPointerOverGameObject ())
+            {
+                OnClick?.Invoke();
+            }
         }
     }
 }

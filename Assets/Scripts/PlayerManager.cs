@@ -36,5 +36,23 @@ namespace ReincarnationCultivation
     public class PlayerManager : MonoBehaviour
     {
         public PlayerData data;
+        public List<ItemConfig> items = new List<ItemConfig>();
+        public List<string> story;
+        public void AddStory(string id)
+        {
+            story.Add(id);
+            data.story = story.ToArray();
+        }
+        public void Reward(ItemConfig item)
+        {
+            items.Add(item);
+            data.items = items.Select(e=>e.id).ToArray();
+            data.physique += item.physique??0;
+            data.strength += item.strength??0;
+            data.agility += item.agility??0;
+            data.refining_equipment += item.refining_equipment??0;
+            data.refining_pills += item.refining_pills??0;
+            data.cultivation += item.cultivation??0;
+        }
     }
 }

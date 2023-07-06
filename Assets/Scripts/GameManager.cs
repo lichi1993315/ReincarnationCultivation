@@ -30,9 +30,20 @@ namespace ReincarnationCultivation
         public DialogList dialogListUI;
         public DialogueOptionsUI dialogueOptionsUI;
 
+        /// <summary>
+        /// 立绘素材
+        /// </summary>
         public Sprite[] characterPortrait;
-        public Sprite[] characterMapIcon;
+        /// <summary>
+        /// 地图上的可交互素材
+        /// </summary>
+        public Sprite[] interactableMapIcon;
+        /// <summary>
+        /// 道具图标
+        /// </summary>
         public Sprite[] itemIcons;
+
+        public MapInteractable mapCharacterPrefab;
         
 
         Dictionary<string,T> ReadConfig<T>(string text) where T:IdConfig
@@ -49,15 +60,96 @@ namespace ReincarnationCultivation
         {
             failMap = ReadConfig<FailConfig>(fail_config.text);
             interactableMap = ReadConfig<InteractableConfig>(interactable_config.text);
+            interactableMap.Values.ToList().ForEach(e=>{
+                e.portrait = System.Array.Find(characterPortrait,p=>p.name==e.id);
+                e.mapIcon = System.Array.Find(interactableMapIcon,p=>p.name==e.id);
+            });
             itemMap = ReadConfig<ItemConfig>(item_config.text);
+            itemMap.Values.ToList().ForEach(e=>{
+                e.icon = System.Array.Find(itemIcons,p=>p.name==e.id);
+            });
             regionMap = ReadConfig<RegionConfig>(region_config.text);
             var story = JsonConvert.DeserializeObject<StoryConfig[]>(story_config.text);
             storyMap = new Dictionary<string,StoryConfig> (story.Select(e=> KeyValuePair.Create(e.id,e))) ;
             npcStoryConfigs = JsonConvert.DeserializeObject<NpcStoryConfig[]>(npcStory.text);
         }
+
+
+        MapInteractable CreateMapInteractable(InteractableConfig config)
+        {
+            var character = Instantiate(mapCharacterPrefab);
+            character.id = config.id;
+            character.spriteRenderer.sprite = config.mapIcon;
+            character.characterName = config.name_zh;
+            return character;
+        }
+        void CreateNPCs()
+        {
+            mapManager.SetNPC( interactableMap.Values.Select(CreateMapInteractable).ToArray() );
+            mapManager.OnInteractableSelected = OnInteractableSelect;
+        }
         void Awake()
         {
             ReadConfig();
+            CreateNPCs();
+            SetStory("S");
+        }
+        void OnInteractableSelect(string interactableId)
+        {
+            Debug.Log("OnInteractableSelect "+interactableId);
+            var interactable = interactableMap[interactableId];
+            dialogListUI.ShowDialog(
+                new DialogList.DialogInfo[]{
+                    new DialogList.DialogInfo(){
+                        content = "要做什么",
+                        character = interactable.portrait,
+                        characterName = interactable.name_zh,
+                    }
+                }
+            );
+            dialogListUI.OnEnd = ()=>ShowDialogueOptions(interactableId);
+            dialogListUI.OnEndClick = null;
+        }
+        void ShowDialogueOptions(string interactableId)
+        {
+            Debug.Log("ShowDialogueOptions "+interactableId);
+            ShowDialogueOptions( GetTaskContent(interactableId,playerManager.data).Values.ToArray() );
+        }
+        void ShowDialogueOptions(NpcStoryConfig.DialogueConfig[] configs)
+        {
+            var options = configs.Select(e=>new DialogueOptionsUI.OptiDialogueOptionInfo(){
+                text = e.mission.name_zh,
+                onSelected = ()=>SelectDialogueOption(e)
+            }).ToList();
+            options.Add(new DialogueOptionsUI.OptiDialogueOptionInfo(){
+                text = "取消",
+                onSelected = ()=> dialogListUI.Hide()
+            });
+            dialogueOptionsUI.ShowOptions(options.ToArray());
+        }
+        void SelectDialogueOption(NpcStoryConfig.DialogueConfig config)
+        {
+            var content = config.content_zh.ToList();
+            var awardId = config.mission.awardId;
+            playerManager.AddStory(config.mission.type);
+            // 临时直接给与奖励
+            content.Add($"奖励 {itemMap[awardId].name_zh}");
+            dialogListUI.ContinueDialog(content.ToArray());
+            dialogListUI.OnEndClick =()=> {
+                playerManager.Reward( itemMap[awardId] );
+                SetStory(config.mission.succeedId);
+                dialogListUI.Hide();
+            };
+            dialogListUI.OnEnd = null;
+        }
+        public void SetStory(string storyId)
+        {
+            Debug.Log("SetStory "+storyId);
+            SetStory(storyMap[storyId]);
+        }
+        public void SetStory(StoryConfig story)
+        {
+            mapManager.MoveNPC(story.npc);
         }
         Dictionary<string, NpcStoryConfig.DialogueConfig> GetTaskContent(string npc, PlayerData data)
         {
