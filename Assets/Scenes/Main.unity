@@ -1103,8 +1103,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 98731b16b79f52745a31ec2163949958, type: 3}
   - {fileID: 21300000, guid: e21f8b45a5a8f7641a34799b5f7a8036, type: 3}
   interactableMapIcon:
-  - {fileID: 21300000, guid: b357b175cef5b224aabc2c6e9406f7e3, type: 3}
-  - {fileID: 21300000, guid: 6afe829ae7157f8478e302752d7d2572, type: 3}
+  - {fileID: 21300000, guid: 495fbd13ca77c914f933bd9b930ec935, type: 3}
+  - {fileID: 21300000, guid: e73b85ea0f4ebba4d880bcb659c2ea36, type: 3}
   itemIcons:
   - {fileID: 21300000, guid: 97b88adfcea729e40957d32c8f45713d, type: 3}
   - {fileID: 21300000, guid: f1a9f60719f7c8045a60b97750056818, type: 3}
