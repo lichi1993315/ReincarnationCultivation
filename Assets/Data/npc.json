@@ -67,7 +67,8 @@
                     "succeedId": "AAS",
                     "failId": "AAF",
                     "awardId": "AAS",
-                    "punishId": "AAF"
+                    "punishId": "AAF",
+                    "needSubmit":true
                 }
             },
             {

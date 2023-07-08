@@ -6,6 +6,7 @@ using System.Globalization;
 using ReincarnationCultivation.Type;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 namespace ReincarnationCultivation
 {
@@ -30,6 +31,9 @@ namespace ReincarnationCultivation
         public PlayerManager playerManager;
         public DialogList dialogListUI;
         public DialogueOptionsUI dialogueOptionsUI;
+        public ItemListUI itemListUI;
+        
+        public Button itemListButton;
 
         /// <summary>
         /// 立绘素材
@@ -91,10 +95,19 @@ namespace ReincarnationCultivation
             mapManager.SetNPC( interactableMap.Values.Select(CreateMapInteractable).ToArray() );
             mapManager.OnInteractableSelected = OnInteractableSelect;
         }
+        void InitUI()
+        {
+            itemListButton.onClick.AddListener(ShowItemList);
+        }
+        void ShowItemList()
+        {
+            itemListUI.Show(playerManager.items.ToArray(),null);
+        }
         void Awake()
         {
             ReadConfig();
             CreateNPCs();
+            InitUI();
             SetStory("S");
         }
         void OnInteractableSelect(string interactableId)
@@ -113,6 +126,7 @@ namespace ReincarnationCultivation
             dialogListUI.OnEnd = ()=>ShowDialogueOptions(interactableId);
             dialogListUI.OnEndClick = null;
         }
+        string currentInteractableId;
         void ShowDialogueOptions(string interactableId)
         {
             Debug.Log("ShowDialogueOptions "+interactableId);
@@ -136,21 +150,43 @@ namespace ReincarnationCultivation
             playerManager.AddItem( item );
         }
 
-        void OnSucceed(NpcStoryConfig.MissionConfig mission)
+        void OnSucceed(NpcStoryConfig.MissionConfig mission,ItemConfig[] submitItems)
         {
-            if(mission.awardId!=null)
+            string awardId = null;
+            if(submitItems!=null)
             {
-                AddItem(itemMap[mission.awardId]);
+                awardId = getTaskResult( currentInteractableId,playerManager.data,true,submitItems.Select(e=>e.id).ToArray(),mission.type );
+            }
+            else
+            {
+                awardId = mission.awardId;
+            }
+            if(awardId!=null)
+            {
+                AddItem(itemMap[awardId]);
             }
             SetStory(mission.succeedId);
             dialogListUI.Hide();
         }
-        void OnFailed(NpcStoryConfig.MissionConfig mission)
+        void OnFailed(NpcStoryConfig.MissionConfig mission,ItemConfig[] submitItems)
         {
+            string awardId = null;
+            if(submitItems!=null)
+            {
+                awardId = getTaskResult( currentInteractableId,playerManager.data,false,submitItems.Select(e=>e.id).ToArray(),mission.type );
+            }
+            else
+            {
+                awardId = mission.awardId;
+            }
+            if(awardId!=null)
+            {
+                AddItem(itemMap[awardId]);
+            }
             SetStory(mission.failId);
             dialogListUI.Hide();
         }
-        void CheckSuccess(NpcStoryConfig.MissionConfig mission)
+        void CheckSuccess(NpcStoryConfig.MissionConfig mission,ItemConfig[] submitItems)
         {
             var point = Mathf.Max(0,mission.threshold.Value - playerManager.GetThreshold(mission)) ;
             dialogListUI.ContinueDialog(string.Format(Localization.Get("dice_tip"),point));
@@ -160,34 +196,51 @@ namespace ReincarnationCultivation
                 if(d>=point)
                 {
                     dialogListUI.ContinueDialog($"{d} "+Localization.Get("success"));
-                    dialogListUI.OnEndClick = ()=>OnSucceed(mission);
+                    dialogListUI.OnEndClick = ()=>OnSucceed(mission,submitItems);
                 }
                 else
                 {
                     dialogListUI.ContinueDialog($"{d} "+Localization.Get("fail"));
-                    dialogListUI.OnEndClick = ()=>OnFailed(mission);
+                    dialogListUI.OnEndClick = ()=>OnFailed(mission,submitItems);
                 }
             };
         }
         void SelectDialogueOption(NpcStoryConfig.DialogueConfig config)
         {
-            var content = config.content;
-            var awardId = config.mission.awardId;
-            playerManager.AddStory(config.mission.type);
-            dialogListUI.ContinueDialog(content);
-            // 临时直接给与奖励
-            // content.Add($"奖励 {itemMap[awardId].name_zh}");content.ToArray());
-            dialogListUI.OnEndClick =()=> {
-                if(config.mission.attribute!=null)
-                {
-                    CheckSuccess(config.mission);
-                }
-                else
-                {
-                    OnSucceed(config.mission);
-                }
-            };
-            dialogListUI.OnEnd = null;
+            if( config.mission?.needSubmit ?? false )
+            {
+                dialogListUI.ContinueDialog(Localization.Get("chooseSubimt"));
+                dialogListUI.OnEndClick = null;
+                dialogListUI.OnEnd = null;
+                itemListUI.Select(playerManager.items.ToArray(),items=>{
+                    if(config.mission.attribute!=null)
+                    {
+                        CheckSuccess(config.mission,items);
+                    }
+                    else
+                    {
+                        OnSucceed(config.mission,items);
+                    }
+                },()=>dialogListUI.Hide());
+            }
+            else
+            {
+                var content = config.content;
+                var awardId = config.mission.awardId;
+                playerManager.AddStory(config.mission.type);
+                dialogListUI.ContinueDialog(content);
+                dialogListUI.OnEndClick =()=> {
+                    if(config.mission.attribute!=null)
+                    {
+                        CheckSuccess(config.mission,null);
+                    }
+                    else
+                    {
+                        OnSucceed(config.mission,null);
+                    }
+                };
+                dialogListUI.OnEnd = null;
+            }
         }
         public void SetStory(string storyId)
         {
@@ -197,6 +250,20 @@ namespace ReincarnationCultivation
         public void SetStory(StoryConfig story)
         {
             mapManager.MoveNPC(story.npc);
+        }
+
+        /// <summary>
+        /// 判断获取的奖励
+        /// </summary>
+        /// <param name="npc"></param>
+        /// <param name="data"></param>
+        /// <param name="success"></param>
+        /// <param name="submitItems"></param>
+        /// <param name="missionType"></param>
+        /// <returns></returns>
+        string getTaskResult(string npc,PlayerData data,bool missionSuccess , string[] submitItems,string missionType)
+        {
+            return "AS";
         }
         Dictionary<string, NpcStoryConfig.DialogueConfig> GetTaskContent(string npc, PlayerData data)
         {

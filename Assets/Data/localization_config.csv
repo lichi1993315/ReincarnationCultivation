@@ -1,6 +1,8 @@
 id,zh,en
 ask,要做什么,What do you want to do?
-cancel,取消,cancel
+cancel,取消,Cancel
+confirm,确认,Confirm
+submit,上交,Submit
 dice_tip,投掷骰子点数{0}或以上成功, Rolling a dice and getting a {0} or above is a success.
 success,成功,success
 fail,失败,fail
@@ -10,3 +12,4 @@ agility,敏捷,Agility
 refining_equipment,炼器,Refining equipment
 refining_pills,炼丹,Refining pills
 cultivation,修为,Cultivation
+chooseSubimt,请选择要交给我的物品,Please select the items you want to hand over to me
