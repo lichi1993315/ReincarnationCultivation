@@ -35,10 +35,15 @@ namespace ReincarnationCultivation
     }
     public class PlayerManager : MonoBehaviour
     {
+        public AttributeUI attributeUI;
         public PlayerData data;
         public List<ItemConfig> items = new List<ItemConfig>();
         public List<string> story;
         public ItemGetTip itemGetTip;
+        void Start()
+        {
+            attributeUI.UpdateUI(data);
+        }
         public void AddStory(string id)
         {
             story.Add(id);
@@ -55,6 +60,7 @@ namespace ReincarnationCultivation
             data.refining_pills += item.refining_pills??0;
             data.cultivation += item.cultivation??0;
             itemGetTip.Show(item);
+            attributeUI.UpdateUI(data);
         }
         /// <summary>
         /// 获取threshold
