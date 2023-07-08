@@ -38,12 +38,13 @@ namespace ReincarnationCultivation
         public PlayerData data;
         public List<ItemConfig> items = new List<ItemConfig>();
         public List<string> story;
+        public ItemGetTip itemGetTip;
         public void AddStory(string id)
         {
             story.Add(id);
             data.story = story.ToArray();
         }
-        public void Reward(ItemConfig item)
+        public void AddItem(ItemConfig item)
         {
             items.Add(item);
             data.items = items.Select(e=>e.id).ToArray();
@@ -53,6 +54,26 @@ namespace ReincarnationCultivation
             data.refining_equipment += item.refining_equipment??0;
             data.refining_pills += item.refining_pills??0;
             data.cultivation += item.cultivation??0;
+            itemGetTip.Show(item);
+        }
+        /// <summary>
+        /// 获取threshold
+        /// </summary>
+        /// <param name="mission"></param>
+        /// <returns></returns>
+        public int GetThreshold(NpcStoryConfig.MissionConfig mission)
+        {
+            switch(mission.attribute.Value)
+            {
+                case CharacterAttribute.physique:return data.physique;
+                case CharacterAttribute.strength:return data.strength;
+                case CharacterAttribute.agility:return data.agility;
+                case CharacterAttribute.refining_equipment:return data.refining_equipment;
+                case CharacterAttribute.refining_pills:return data.refining_pills;
+                case CharacterAttribute.cultivation:return data.cultivation;
+            }
+            Debug.LogError(mission.attribute.Value);
+            return 0;
         }
     }
 }

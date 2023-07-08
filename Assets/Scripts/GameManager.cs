@@ -17,6 +17,7 @@ namespace ReincarnationCultivation
         public TextAsset region_config;
         public TextAsset story_config;
         public TextAsset npcStory;
+        public TextAsset localization_config;
 
         public Dictionary<string,FailConfig> failMap;
         public Dictionary<string,InteractableConfig> interactableMap;
@@ -72,6 +73,8 @@ namespace ReincarnationCultivation
             var story = JsonConvert.DeserializeObject<StoryConfig[]>(story_config.text);
             storyMap = new Dictionary<string,StoryConfig> (story.Select(e=> KeyValuePair.Create(e.id,e))) ;
             npcStoryConfigs = JsonConvert.DeserializeObject<NpcStoryConfig[]>(npcStory.text);
+
+            Localization.Init( ReadConfig<Localization.Config>(localization_config.text) );
         }
 
 
@@ -80,7 +83,7 @@ namespace ReincarnationCultivation
             var character = Instantiate(mapCharacterPrefab);
             character.id = config.id;
             character.spriteRenderer.sprite = config.mapIcon;
-            character.characterName = config.name_zh;
+            character.characterName = config.name;
             return character;
         }
         void CreateNPCs()
@@ -101,9 +104,9 @@ namespace ReincarnationCultivation
             dialogListUI.ShowDialog(
                 new DialogList.DialogInfo[]{
                     new DialogList.DialogInfo(){
-                        content = "要做什么",
+                        content = Localization.Get("ask"),
                         character = interactable.portrait,
-                        characterName = interactable.name_zh,
+                        characterName = interactable.name,
                     }
                 }
             );
@@ -118,27 +121,71 @@ namespace ReincarnationCultivation
         void ShowDialogueOptions(NpcStoryConfig.DialogueConfig[] configs)
         {
             var options = configs.Select(e=>new DialogueOptionsUI.OptiDialogueOptionInfo(){
-                text = e.mission.name_zh,
+                text = e.mission.name,
                 onSelected = ()=>SelectDialogueOption(e)
             }).ToList();
             options.Add(new DialogueOptionsUI.OptiDialogueOptionInfo(){
-                text = "取消",
+                text = Localization.Get("cancel"),
                 onSelected = ()=> dialogListUI.Hide()
             });
             dialogueOptionsUI.ShowOptions(options.ToArray());
         }
+
+        void AddItem(ItemConfig item)
+        {
+            playerManager.AddItem( item );
+        }
+
+        void OnSucceed(NpcStoryConfig.MissionConfig mission)
+        {
+            if(mission.awardId!=null)
+            {
+                AddItem(itemMap[mission.awardId]);
+            }
+            SetStory(mission.succeedId);
+            dialogListUI.Hide();
+        }
+        void OnFailed(NpcStoryConfig.MissionConfig mission)
+        {
+            SetStory(mission.failId);
+            dialogListUI.Hide();
+        }
+        void CheckSuccess(NpcStoryConfig.MissionConfig mission)
+        {
+            var point = Mathf.Max(0,mission.threshold.Value - playerManager.GetThreshold(mission)) ;
+            dialogListUI.ContinueDialog(string.Format(Localization.Get("dice_tip"),point));
+            dialogListUI.OnEnd = null;
+            dialogListUI.OnEndClick =()=> {
+                var d  = Dice.D12();
+                if(d>=point)
+                {
+                    dialogListUI.ContinueDialog($"{d} "+Localization.Get("success"));
+                    dialogListUI.OnEndClick = ()=>OnSucceed(mission);
+                }
+                else
+                {
+                    dialogListUI.ContinueDialog($"{d} "+Localization.Get("fail"));
+                    dialogListUI.OnEndClick = ()=>OnFailed(mission);
+                }
+            };
+        }
         void SelectDialogueOption(NpcStoryConfig.DialogueConfig config)
         {
-            var content = config.content_zh.ToList();
+            var content = config.content;
             var awardId = config.mission.awardId;
             playerManager.AddStory(config.mission.type);
+            dialogListUI.ContinueDialog(content);
             // 临时直接给与奖励
-            content.Add($"奖励 {itemMap[awardId].name_zh}");
-            dialogListUI.ContinueDialog(content.ToArray());
+            // content.Add($"奖励 {itemMap[awardId].name_zh}");content.ToArray());
             dialogListUI.OnEndClick =()=> {
-                playerManager.Reward( itemMap[awardId] );
-                SetStory(config.mission.succeedId);
-                dialogListUI.Hide();
+                if(config.mission.attribute!=null)
+                {
+                    CheckSuccess(config.mission);
+                }
+                else
+                {
+                    OnSucceed(config.mission);
+                }
             };
             dialogListUI.OnEnd = null;
         }

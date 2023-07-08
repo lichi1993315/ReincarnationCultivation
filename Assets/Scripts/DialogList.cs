@@ -38,7 +38,7 @@ namespace ReincarnationCultivation
         /// 保持原有的角色设置,显示接下来的文字
         /// </summary>
         /// <param name="dialog"></param>
-        public void ContinueDialog(string[] dialog)
+        public void ContinueDialog(params string[] dialog)
         {
             gameObject.SetActive(true);
             dialogUI.gameObject.SetActive(true);

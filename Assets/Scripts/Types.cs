@@ -13,6 +13,17 @@ namespace ReincarnationCultivation.Type
         public string id;
         public string name_zh;
         public string name_en;
+        public string name
+        {
+            get
+            {
+                if(Localization.language==Language.zh)
+                {
+                    return name_zh;
+                }
+                return name_en;
+            }
+        }
         public int? physique;
         public int? strength;
         public int? agility;
@@ -27,6 +38,17 @@ namespace ReincarnationCultivation.Type
         public string id;
         public string name_zh;
         public string name_en;
+        public string name
+        {
+            get
+            {
+                if(Localization.language==Language.zh)
+                {
+                    return name_zh;
+                }
+                return name_en;
+            }
+        }
         public int? physique;
         public int? strength;
         public int? agility;
@@ -40,6 +62,17 @@ namespace ReincarnationCultivation.Type
         public string id;
         public string name_zh;
         public string name_en;
+        public string name
+        {
+            get
+            {
+                if(Localization.language==Language.zh)
+                {
+                    return name_zh;
+                }
+                return name_en;
+            }
+        }
     }
     public class InteractableConfig:IdConfig
     {
@@ -47,6 +80,17 @@ namespace ReincarnationCultivation.Type
         public string id;
         public string name_zh;
         public string name_en;
+        public string name
+        {
+            get
+            {
+                if(Localization.language==Language.zh)
+                {
+                    return name_zh;
+                }
+                return name_en;
+            }
+        }
         public Sprite portrait;
         public Sprite mapIcon;
     }
@@ -76,6 +120,17 @@ namespace ReincarnationCultivation.Type
             public string type;
             public string name_zh;
             public string name_en;
+            public string name
+            {
+                get
+                {
+                    if(Localization.language==Language.zh)
+                    {
+                        return name_zh;
+                    }
+                    return name_en;
+                }
+            }
             public string condition;
             public CharacterAttribute? attribute;
             public int? threshold;
@@ -89,6 +144,17 @@ namespace ReincarnationCultivation.Type
         {
             public string[] content_zh;
             public string[] content_en;
+            public string[] content
+            {
+                get
+                {
+                    if(Localization.language==Language.zh)
+                    {
+                        return content_zh;
+                    }
+                    return content_en;
+                }
+            }
             public MissionConfig mission;
         }
         [System.Serializable]
@@ -112,6 +178,17 @@ namespace ReincarnationCultivation.Type
             public string type;
             public string name_zh;
             public string name_en;
+            public string name
+            {
+                get
+                {
+                    if(Localization.language==Language.zh)
+                    {
+                        return name_zh;
+                    }
+                    return name_en;
+                }
+            }
             public string condition;
             public CharacterAttribute? attribute;
             public int? threshold;
@@ -125,6 +202,17 @@ namespace ReincarnationCultivation.Type
         {
             public string[] content_zh;
             public string[] content_en;
+            public string[] content
+            {
+                get
+                {
+                    if(Localization.language==Language.zh)
+                    {
+                        return content_zh;
+                    }
+                    return content_en;
+                }
+            }
             public MissionConfig mission;
         }
         
