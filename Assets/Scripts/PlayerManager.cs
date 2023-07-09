@@ -27,13 +27,15 @@ namespace ReincarnationCultivation
         // 循环次数。第一次进入剧情时为0
         public int loopCount;
         // 道具
-        public string[] items;
+        public string[] items = new string[]{};
         // 历史故事线id数组
-        public string[] story;
+        public string[] story = new string[]{};
         // 单日回合数，目前每天三个行动点数。0 1 2 代表早中晚
         public int time;
         public int day;
         public int remain_turn = 15;
+        public int turn = 0;
+        public int max_turn = 15;
     }
     public class PlayerManager : MonoBehaviour
     {
@@ -46,6 +48,15 @@ namespace ReincarnationCultivation
         {
             attributeUI.UpdateUI(data);
         }
+        public void OnReincarnation()
+        {
+            data.turn = 0;
+            data.day = 0;
+            data.time = 0;
+            data.loopCount+=1;
+            data.remain_turn = data.max_turn;
+            data.story = new string[]{};
+        }
         public void AddStory(string id)
         {
             story.Add(id);
@@ -57,6 +68,7 @@ namespace ReincarnationCultivation
                 data.day +=1;
             }
             data.remain_turn -= 1;
+            data.turn += 1;
             if(data.remain_turn<0)
             {
                 data.remain_turn = 0;
@@ -73,6 +85,17 @@ namespace ReincarnationCultivation
             data.refining_pills += item.refining_pills??0;
             data.cultivation += item.cultivation??0;
             itemGetTip.Show(item);
+        }
+        public void RemoveAllItem()
+        {
+            var items = this.items.ToArray();
+            foreach(var i in items)
+            {
+                RemoveItem(i);
+            }
+        }
+        public void UpdateUI()
+        {
             attributeUI.UpdateUI(data);
         }
         public void RemoveItem(ItemConfig item)

@@ -22,3 +22,4 @@ alchemist,炼丹师,Alchemist
 elder,掌门,Chief Elder
 remain_turn,剩余回合,Remain Turn
 finish_game,你已经完成所有挑战 跳出循环 取得游戏胜利,You have completed all the challenges. Break the loop and achieve victory in the game.
+choose_item,选择一样道具 带入下一次循环, Choose one item to carry over into the next loop

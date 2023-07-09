@@ -56,7 +56,7 @@ namespace ReincarnationCultivation
             submitButton.gameObject.SetActive(false);
             cancelButton.gameObject.SetActive(false);
             OnConfirm = onConfirm;
-            _Show(items,false);
+            _Show(items,false,null);
         }
         public void Select(ItemConfig[] items,System.Action<ItemConfig[]> onSubmit,System.Action onCancel)
         {
@@ -66,19 +66,34 @@ namespace ReincarnationCultivation
             cancelButton.gameObject.SetActive(true);
             OnSubmit = onSubmit;
             OnCancel = onCancel;
-            _Show(items,true);
+            _Show(items,true,null);
         }
-        void _Show(ItemConfig[] items,bool interactable)
+        public void SelectOne(ItemConfig[] items,System.Action<ItemConfig> onSelect)
+        {
+            gameObject.SetActive(true);
+            confirmButton.gameObject.SetActive(false);
+            submitButton.gameObject.SetActive(false);
+            cancelButton.gameObject.SetActive(false);
+            _Show(items,true,(i,b)=>{
+                Hide();
+                onSelect(i);
+            });
+        }
+        void _Show(ItemConfig[] items,bool interactable,System.Action<ItemConfig,bool> onSelect)
         {
             descriptionText.text = "";
             foreach(var item in items)
-                Add(item,interactable);
+                Add(item,interactable,onSelect);
         }
-        void Add(ItemConfig config,bool interactable)
+        void Add(ItemConfig config,bool interactable,System.Action<ItemConfig,bool> onSelect)
         {
             var item = Instantiate(itemUIPrefab);
             item.transform.SetParent(itemContent,false);
             item.toggle.interactable = interactable;
+            if(onSelect!=null)
+            {
+                item.toggle.onValueChanged.AddListener(e=>onSelect(config,e));
+            }
             item.config = config;
             item.OnPointerOver = ()=>descriptionText.text=string.Join(" ",config.description);
         }

@@ -150,9 +150,75 @@ namespace ReincarnationCultivation
             playerManager.AddItem( item );
         }
 
-        void OnSucceed(NpcStoryConfig.MissionConfig mission,ItemConfig[] submitItems)
+        void OnBossFight()
         {
-            playerManager.AddStory(mission.type);
+            Debug.Log("OnBossFight");
+
+            var missions = GetTaskContent("boss",playerManager.data).Values.ToArray();
+            if(missions.Count()>0)
+            {
+                var options = missions.Select(e=>new DialogueOptionsUI.OptiDialogueOptionInfo(){
+                    text = e.mission.name,
+                    onSelected = ()=>SelectDialogueOption(e)
+                }).ToArray();
+                dialogueOptionsUI.ShowOptions(options.ToArray());
+
+                var interactable = interactableMap["boss"];
+                dialogListUI.ShowDialog(
+                    new DialogList.DialogInfo[]{
+                        new DialogList.DialogInfo(){
+                            content = Localization.Get("ask"),
+                            character = interactable.portrait,
+                            characterName = interactable.name,
+                        }
+                    }
+                );
+                dialogListUI.OnEnd = null;
+                dialogListUI.OnEndClick = null;
+
+            }
+            else
+            {
+
+                var interactable = interactableMap["boss"];
+                dialogListUI.ShowDialog(
+                    new DialogList.DialogInfo[]{
+                        new DialogList.DialogInfo(){
+                            content = Localization.Get("finish_game"),
+                            character = interactable.portrait,
+                            characterName = interactable.name,
+                        }
+                    }
+                );
+                dialogListUI.OnEnd = null;
+                dialogListUI.OnEndClick = null;
+            }
+        }
+
+        void OnReincarnation()
+        {
+
+            dialogListUI.ShowDialog(
+                new DialogList.DialogInfo[]{
+                    new DialogList.DialogInfo(){
+                        content = Localization.Get("choose_item"),
+                    }
+                }
+            );
+            dialogListUI.OnEnd = null;
+            dialogListUI.OnEndClick = null;
+
+            itemListUI.SelectOne( playerManager.items.ToArray(),i=>{
+                playerManager.RemoveAllItem();
+                playerManager.AddItem(i);
+                playerManager.OnReincarnation();
+                dialogListUI.Hide();
+                playerManager.UpdateUI();
+            } );
+        }
+
+        void OnTurnFinish(NpcStoryConfig.MissionConfig mission,ItemConfig[] submitItems,bool isSuccess)
+        {
             string awardId = null;
             if(submitItems!=null)
             {
@@ -169,26 +235,23 @@ namespace ReincarnationCultivation
             }
             // SetStory(mission.succeedId);
             dialogListUI.Hide();
-        }
-        void OnFailed(NpcStoryConfig.MissionConfig mission,ItemConfig[] submitItems)
-        {
+
+
             playerManager.AddStory(mission.type);
-            string awardId = null;
-            if(submitItems!=null)
+            playerManager.UpdateUI();
+            if(playerManager.data.remain_turn==0)
             {
-                submitItems.ToList().ForEach(e=>playerManager.RemoveItem(e));
-                awardId = getTaskResult( currentInteractableId,playerManager.data,false,submitItems.Select(e=>e.id).ToArray(),mission.type );
+                OnReincarnation();
+                // // boss 战失败, 进入轮回
+                // if(playerManager.data.turn>playerManager.data.max_turn && !isSuccess)
+                // {
+                //     OnReincarnation();
+                // }
+                // else // 继续boss战
+                // {
+                //     OnBossFight();
+                // }
             }
-            else
-            {
-                awardId = mission.awardId;
-            }
-            if(awardId!=null)
-            {
-                AddItem(itemMap[awardId]);
-            }
-            // SetStory(mission.failId);
-            dialogListUI.Hide();
         }
         void CheckSuccess(NpcStoryConfig.MissionConfig mission,ItemConfig[] submitItems)
         {
@@ -200,12 +263,12 @@ namespace ReincarnationCultivation
                 if(d>=point)
                 {
                     dialogListUI.ContinueDialog($"{d} "+Localization.Get("success"));
-                    dialogListUI.OnEndClick = ()=>OnSucceed(mission,submitItems);
+                    dialogListUI.OnEndClick = ()=>OnTurnFinish(mission,submitItems,true);
                 }
                 else
                 {
                     dialogListUI.ContinueDialog($"{d} "+Localization.Get("fail"));
-                    dialogListUI.OnEndClick = ()=>OnFailed(mission,submitItems);
+                    dialogListUI.OnEndClick = ()=>OnTurnFinish(mission,submitItems,false);
                 }
             };
         }
@@ -223,7 +286,7 @@ namespace ReincarnationCultivation
                     }
                     else
                     {
-                        OnSucceed(config.mission,items);
+                        OnTurnFinish(config.mission,items,true);
                     }
                 },()=>dialogListUI.Hide());
             }
@@ -239,7 +302,7 @@ namespace ReincarnationCultivation
                     }
                     else
                     {
-                        OnSucceed(config.mission,null);
+                        OnTurnFinish(config.mission,null,true);
                     }
                 };
                 dialogListUI.OnEnd = null;
