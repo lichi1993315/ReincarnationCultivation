@@ -9,8 +9,8 @@ fail,失败,fail
 physique,体质,Physique
 strength,力量,Strength
 agility,敏捷,Agility
-refining_equipment,炼器,Refining equipment
-refining_pills,炼丹,Refining pills
+refining_equipment,炼器,Refining Equipment
+refining_pills,炼丹,Refining Pills
 cultivation,修为,Cultivation
 chooseSubimt,请选择要交给我的物品,Please select the items you want to hand over to me
 book_house,天机阁,Sacred Scripture Pavilion
@@ -20,3 +20,4 @@ blacksmith_room,神兵阁,Sacred Weapon House
 bookkeeper,天机阁长老,Elder of the Celestial Mechanism Pavilion
 alchemist,炼丹师,Alchemist
 elder,掌门,Chief Elder
+remain_turn,剩余回合,Remain Turen

@@ -14,6 +14,7 @@ namespace ReincarnationCultivation
         public TextMeshProUGUI refining_equipment;
         public TextMeshProUGUI refining_pills;
         public TextMeshProUGUI cultivation;
+        public TextMeshProUGUI remainTurn;
 
         public void UpdateUI(PlayerData data)
         {
@@ -23,6 +24,7 @@ namespace ReincarnationCultivation
             refining_equipment.text = data.refining_equipment.ToString();
             refining_pills.text = data.refining_pills.ToString();
             cultivation.text = data.cultivation.ToString();
+            remainTurn.text = data.remain_turn.ToString();
         }
     }
 }

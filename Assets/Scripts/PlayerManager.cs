@@ -33,6 +33,7 @@ namespace ReincarnationCultivation
         // 单日回合数，目前每天三个行动点数。0 1 2 代表早中晚
         public int time;
         public int day;
+        public int remain_turn = 15;
     }
     public class PlayerManager : MonoBehaviour
     {
@@ -54,6 +55,11 @@ namespace ReincarnationCultivation
             {
                 data.time = 0;
                 data.day +=1;
+            }
+            data.remain_turn -= 1;
+            if(data.remain_turn<0)
+            {
+                data.remain_turn = 0;
             }
         }
         public void AddItem(ItemConfig item)
