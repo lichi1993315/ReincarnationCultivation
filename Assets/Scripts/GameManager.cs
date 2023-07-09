@@ -241,16 +241,15 @@ namespace ReincarnationCultivation
             playerManager.UpdateUI();
             if(playerManager.data.remain_turn==0)
             {
-                OnReincarnation();
-                // // boss 战失败, 进入轮回
-                // if(playerManager.data.turn>playerManager.data.max_turn && !isSuccess)
-                // {
-                //     OnReincarnation();
-                // }
-                // else // 继续boss战
-                // {
-                //     OnBossFight();
-                // }
+                // boss 战失败, 进入轮回
+                if(playerManager.data.turn>playerManager.data.max_turn && !isSuccess)
+                {
+                    OnReincarnation();
+                }
+                else // 继续boss战
+                {
+                    OnBossFight();
+                }
             }
         }
         void CheckSuccess(NpcStoryConfig.MissionConfig mission,ItemConfig[] submitItems)
