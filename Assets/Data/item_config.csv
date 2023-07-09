@@ -1,6 +1,6 @@
 id,name_zh,name_en,physique,strength,agility,refining_equipment,refining_pills,cultivation
-AS,生骨丹,Bone-Regenerating Pill,1,,,,,
-BS,五府锻元诀,Five Mansions' Refinement Technique,,,,,,3
-AAS,洗髓丹,Marrow-Cleansing Pill,,,2,,,1
-BAS,龙虎丹,Dragon-Tiger Pill,,4,,,,
-BBS,蛮牛护体决,Bull's Protection Art,3,,,,,1
+bone_regenerating_pill,生骨丹,Bone-Regenerating Pill,1,,,,,
+five_mansions_refinement_technique,五府锻元诀,Five Mansions' Refinement Technique,,,,,,3
+marrow_cleansing_pill,洗髓丹,Marrow-Cleansing Pill,,,2,,,1
+dragon_tiger_pill,龙虎丹,Dragon-Tiger Pill,,4,,,,
+bulls_protection_art,蛮牛护体决,Bull's Protection Art,3,,,,,1

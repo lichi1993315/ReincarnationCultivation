@@ -29,8 +29,8 @@
                     "threshold": "2",
                     "succeedId": "AS",
                     "failId": "AF",
-                    "awardId": "AS",
-                    "punishId": "AF"
+                    "awardId": "bone_regenerating_pill",
+                    "punishId": "bone_regenerating_pill"
                 }
             },
             {
@@ -66,8 +66,8 @@
                     "threshold": "7",
                     "succeedId": "AAS",
                     "failId": "AAF",
-                    "awardId": "AAS",
-                    "punishId": "AAF",
+                    "awardId": "marrow_cleansing_pill",
+                    "punishId": "marrow_cleansing_pill",
                     "needSubmit":true
                 }
             },

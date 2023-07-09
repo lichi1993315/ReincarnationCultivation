@@ -263,7 +263,18 @@ namespace ReincarnationCultivation
         /// <returns></returns>
         string getTaskResult(string npc,PlayerData data,bool missionSuccess , string[] submitItems,string missionType)
         {
-            return "AS";
+            if (npc == "alchemist")
+            {
+                if (missionType == "炼丹")
+                {
+                    if (submitItems[0] == "lv3_medicine")
+                    {
+                        return "marrow_cleansing_pill";
+                    }
+                }
+                    
+            }
+            return "bone_regenerating_pill";
         }
         Dictionary<string, NpcStoryConfig.DialogueConfig> GetTaskContent(string npc, PlayerData data)
         {
