@@ -20,4 +20,5 @@ blacksmith_room,神兵阁,Sacred Weapon House
 bookkeeper,天机阁长老,Elder of the Celestial Mechanism Pavilion
 alchemist,炼丹师,Alchemist
 elder,掌门,Chief Elder
-remain_turn,剩余回合,Remain Turen
+remain_turn,剩余回合,Remain Turn
+finish_game,你已经完成所有挑战 跳出循环 取得游戏胜利,You have completed all the challenges. Break the loop and achieve victory in the game.
