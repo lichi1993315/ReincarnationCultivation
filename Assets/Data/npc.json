@@ -130,8 +130,8 @@
                 ],
                 "mission": {
                     "type": "观摩炼丹师的剑（失败）",
-                    "name_zh": "观摩炼丹师的剑（失败）",
-                    "name_en": "Observe and learn from the sword of the alchemist(failed)",
+                    "name_zh": "观摩炼丹师的剑",
+                    "name_en": "Observe and learn from the sword of the alchemist",
                     "condition": "refining_pills<6",
                     "attribute": "",
                     "threshold": ""
@@ -146,8 +146,8 @@
                 ],
                 "mission": {
                     "type": "观摩炼丹师的剑（成功）",
-                    "name_zh": "观摩炼丹师的剑（成功）",
-                    "name_en": "Observe and learn from the sword of the alchemist(success)",
+                    "name_zh": "观摩炼丹师的剑",
+                    "name_en": "Observe and learn from the sword of the alchemist",
                     "condition": "refining_pills>=6",
                     "attribute": "",
                     "threshold": ""
@@ -280,8 +280,8 @@
                 ],
                 "mission": {
                     "type": "观摩藏经阁长老的剑（失败）",
-                    "name_zh": "观摩藏经阁长老的剑（失败）",
-                    "name_en": "Observe and learn from the sword of the bookkeeper(failed)",
+                    "name_zh": "观摩藏经阁长老的剑",
+                    "name_en": "Observe and learn from the sword of the bookkeeper",
                     "condition": "cultivation<6",
                     "attribute": "",
                     "threshold": ""
@@ -296,8 +296,8 @@
                 ],
                 "mission": {
                     "type": "观摩藏经阁长老的剑（成功）",
-                    "name_zh": "观摩藏经阁长老的剑（成功）",
-                    "name_en": "Observe and learn from the sword of the bookkeeper(success)",
+                    "name_zh": "观摩藏经阁长老的剑",
+                    "name_en": "Observe and learn from the sword of the bookkeeper",
                     "condition": "cultivation>=6",
                     "attribute": "",
                     "threshold": ""

@@ -325,6 +325,75 @@ namespace ReincarnationCultivation
                         }
                     }
                 }
+            }else if (npc == "weapon_master")
+            {
+                var storyList = storyMap[npc].dialogue;
+                foreach (var s in storyList)
+                {
+                    if (s.mission.type == "挖矿")
+                    {
+                        // 默认随时允许采药
+                        npcDialogue.Add(s.mission.type, s);
+                    }
+
+                    if (s.mission.type == "锻造")
+                    {
+                        //仅完成采矿任务且炼器属性>2,才可以炼器
+                        if (data.refining_equipment < 2) break;
+                        foreach (var d in data.story)
+                        {
+                            if (d.Contains("挖矿"))
+                            {
+                                npcDialogue.Add(s.mission.type, s);
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if (s.mission.type == "强化")
+                    {
+                        //仅完成锻造任务且炼器属性>4,才可以强化
+                        if (data.refining_equipment < 4) break;
+                        foreach (var d in data.story)
+                        {
+                            if (d.Contains("锻造"))
+                            {
+                                npcDialogue.Add(s.mission.type, s);
+                                break;
+                            }
+                        }
+                    }
+                    
+                    
+                    if (s.mission.type == "观摩")
+                    {
+                        //仅完成强化任务且炼器属性>6,才可以观摩
+                        if (data.refining_equipment < 6) break;
+                        foreach (var d in data.story)
+                        {
+                            if (d.Contains("强化"))
+                            {
+                                npcDialogue.Add(s.mission.type, s);
+                                break;
+                            }
+                        }
+                    }
+                    
+                    
+                    if (s.mission.type == "观摩神兵阁长老的剑")
+                    {
+                        //开启任务观摩
+                        foreach (var d in data.story)
+                        {
+                            if (d.Contains("观摩"))
+                            {
+                                npcDialogue.Add(s.mission.type, s);
+                                break;
+                            }
+                        }
+                    }
+                    
+                }
             }
             
             return npcDialogue;
