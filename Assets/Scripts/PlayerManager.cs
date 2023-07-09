@@ -32,6 +32,7 @@ namespace ReincarnationCultivation
         public string[] story;
         // 单日回合数，目前每天三个行动点数。0 1 2 代表早中晚
         public int time;
+        public int day;
     }
     public class PlayerManager : MonoBehaviour
     {
@@ -48,6 +49,12 @@ namespace ReincarnationCultivation
         {
             story.Add(id);
             data.story = story.ToArray();
+            data.time+=1;
+            if(data.time>=3)
+            {
+                data.time = 0;
+                data.day +=1;
+            }
         }
         public void AddItem(ItemConfig item)
         {
@@ -61,6 +68,20 @@ namespace ReincarnationCultivation
             data.cultivation += item.cultivation??0;
             itemGetTip.Show(item);
             attributeUI.UpdateUI(data);
+        }
+        public void RemoveItem(ItemConfig item)
+        {
+            var index = items.IndexOf(item);
+            if(index>=0)
+            {
+                data.physique -= item.physique??0;
+                data.strength -= item.strength??0;
+                data.agility -= item.agility??0;
+                data.refining_equipment -= item.refining_equipment??0;
+                data.refining_pills -= item.refining_pills??0;
+                data.cultivation -= item.cultivation??0;
+                items.RemoveAt(index);
+            }
         }
         /// <summary>
         /// 获取threshold

@@ -31,21 +31,26 @@ namespace ReincarnationCultivation
             mapButton.onClick.AddListener(ReturnToWorld);
             regions.ToList().ForEach(e=>e.enterButton.OnClick=()=>EnterRegion(e));
             currentMap = world;
-        }
-
-        /// <summary>
-        /// 设置所有地图可交互物,比如npc
-        /// </summary>
-        /// <param name="npcs"></param>
-        public void SetNPC(MapInteractable[] npcs)
-        {
-            foreach(var npc in  npcs)
+            foreach(var npc in _npcs)
             {
                 var id = npc.id;
-                npc.button.OnClick = ()=> _OnInteractableSelected(id);
+                npc.button.OnClick =  ()=> _OnInteractableSelected(id);
             }
-            this._npcs = npcs;
         }
+
+        // /// <summary>
+        // /// 设置所有地图可交互物,比如npc
+        // /// </summary>
+        // /// <param name="npcs"></param>
+        // public void SetNPC(MapInteractable[] npcs)
+        // {
+        //     foreach(var npc in  npcs)
+        //     {
+        //         var id = npc.id;
+        //         npc.button.OnClick = ()=> _OnInteractableSelected(id);
+        //     }
+        //     this._npcs = npcs;
+        // }
 
         public MapInteractable GetNPC(string id)
         {

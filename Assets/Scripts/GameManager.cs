@@ -16,7 +16,7 @@ namespace ReincarnationCultivation
         public TextAsset interactable_config;
         public TextAsset item_config;
         public TextAsset region_config;
-        public TextAsset story_config;
+        // public TextAsset story_config;
         public TextAsset npcStory;
         public TextAsset localization_config;
 
@@ -24,7 +24,7 @@ namespace ReincarnationCultivation
         public Dictionary<string,InteractableConfig> interactableMap;
         public Dictionary<string,ItemConfig> itemMap;
         public Dictionary<string,RegionConfig> regionMap;
-        public Dictionary<string,StoryConfig> storyMap;
+        // public Dictionary<string,StoryConfig> storyMap;
         public NpcStoryConfig[] npcStoryConfigs;
 
         public MapManager mapManager;
@@ -74,8 +74,8 @@ namespace ReincarnationCultivation
                 e.icon = System.Array.Find(itemIcons,p=>p.name==e.id);
             });
             regionMap = ReadConfig<RegionConfig>(region_config.text);
-            var story = JsonConvert.DeserializeObject<StoryConfig[]>(story_config.text);
-            storyMap = new Dictionary<string,StoryConfig> (story.Select(e=> KeyValuePair.Create(e.id,e))) ;
+            // var story = JsonConvert.DeserializeObject<StoryConfig[]>(story_config.text);
+            // storyMap = new Dictionary<string,StoryConfig> (story.Select(e=> KeyValuePair.Create(e.id,e))) ;
             npcStoryConfigs = JsonConvert.DeserializeObject<NpcStoryConfig[]>(npcStory.text);
 
             Localization.Init( ReadConfig<Localization.Config>(localization_config.text) );
@@ -87,12 +87,12 @@ namespace ReincarnationCultivation
             var character = Instantiate(mapCharacterPrefab);
             character.id = config.id;
             character.spriteRenderer.sprite = config.mapIcon;
-            character.characterName = config.name;
+            // character.characterName = config.name;
             return character;
         }
         void CreateNPCs()
         {
-            mapManager.SetNPC( interactableMap.Values.Select(CreateMapInteractable).ToArray() );
+            // mapManager.SetNPC( interactableMap.Values.Select(CreateMapInteractable).ToArray() );
             mapManager.OnInteractableSelected = OnInteractableSelect;
         }
         void InitUI()
@@ -108,7 +108,7 @@ namespace ReincarnationCultivation
             ReadConfig();
             CreateNPCs();
             InitUI();
-            SetStory("S");
+            // SetStory("S");
         }
         void OnInteractableSelect(string interactableId)
         {
@@ -152,9 +152,11 @@ namespace ReincarnationCultivation
 
         void OnSucceed(NpcStoryConfig.MissionConfig mission,ItemConfig[] submitItems)
         {
+            playerManager.AddStory(mission.type);
             string awardId = null;
             if(submitItems!=null)
             {
+                submitItems.ToList().ForEach(e=>playerManager.RemoveItem(e));
                 awardId = getTaskResult( currentInteractableId,playerManager.data,true,submitItems.Select(e=>e.id).ToArray(),mission.type );
             }
             else
@@ -165,14 +167,16 @@ namespace ReincarnationCultivation
             {
                 AddItem(itemMap[awardId]);
             }
-            SetStory(mission.succeedId);
+            // SetStory(mission.succeedId);
             dialogListUI.Hide();
         }
         void OnFailed(NpcStoryConfig.MissionConfig mission,ItemConfig[] submitItems)
         {
+            playerManager.AddStory(mission.type);
             string awardId = null;
             if(submitItems!=null)
             {
+                submitItems.ToList().ForEach(e=>playerManager.RemoveItem(e));
                 awardId = getTaskResult( currentInteractableId,playerManager.data,false,submitItems.Select(e=>e.id).ToArray(),mission.type );
             }
             else
@@ -183,7 +187,7 @@ namespace ReincarnationCultivation
             {
                 AddItem(itemMap[awardId]);
             }
-            SetStory(mission.failId);
+            // SetStory(mission.failId);
             dialogListUI.Hide();
         }
         void CheckSuccess(NpcStoryConfig.MissionConfig mission,ItemConfig[] submitItems)
@@ -227,7 +231,6 @@ namespace ReincarnationCultivation
             {
                 var content = config.content;
                 var awardId = config.mission.awardId;
-                playerManager.AddStory(config.mission.type);
                 dialogListUI.ContinueDialog(content);
                 dialogListUI.OnEndClick =()=> {
                     if(config.mission.attribute!=null)
@@ -242,11 +245,11 @@ namespace ReincarnationCultivation
                 dialogListUI.OnEnd = null;
             }
         }
-        public void SetStory(string storyId)
-        {
-            Debug.Log("SetStory "+storyId);
-            SetStory(storyMap[storyId]);
-        }
+        // public void SetStory(string storyId)
+        // {
+        //     Debug.Log("SetStory "+storyId);
+        //     SetStory(storyMap[storyId]);
+        // }
         public void SetStory(StoryConfig story)
         {
             mapManager.MoveNPC(story.npc);

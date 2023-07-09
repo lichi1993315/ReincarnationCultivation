@@ -10,7 +10,7 @@ namespace ReincarnationCultivation
     public class MapInteractable : MonoBehaviour
     {
         public string id;
-        public string characterName;
+        // public string characterName;
         public ColliderButton button;
         public SpriteRenderer spriteRenderer;
     }

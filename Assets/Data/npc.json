@@ -306,8 +306,8 @@
         ]
     },
     {
-        "id": "weapon_master",
-        "regionId": "weapon_house",
+        "id": "blacksmith",
+        "regionId": "blacksmith_room",
         "dialogue": [
             {
                 "content_zh": [
