@@ -3680,6 +3680,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 95b33bdda81304c71af6f58c538be70f, type: 3}
   - {fileID: 21300000, guid: e73b85ea0f4ebba4d880bcb659c2ea36, type: 3}
   - {fileID: 21300000, guid: 7ee04ba8f0ba14c149cd534fed34c94d, type: 3}
+  - {fileID: 21300000, guid: f1a9f60719f7c8045a60b97750056818, type: 3}
   interactableMapIcon:
   - {fileID: 21300000, guid: 495fbd13ca77c914f933bd9b930ec935, type: 3}
   - {fileID: 21300000, guid: 95b33bdda81304c71af6f58c538be70f, type: 3}
