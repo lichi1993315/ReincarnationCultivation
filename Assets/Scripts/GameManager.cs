@@ -275,8 +275,14 @@ namespace ReincarnationCultivation
                         return "marrow_cleansing_pill";
                     }
                 }
-                    
+            }else if (npc == "blacksmith")
+            {
+                if (missionType == "挖矿")
+                {
+                        return "crude_iron_ore";
+                }
             }
+
             return "bone_regenerating_pill";
         }
         Dictionary<string, NpcStoryConfig.DialogueConfig> GetTaskContent(string npc, PlayerData data)
@@ -339,7 +345,7 @@ namespace ReincarnationCultivation
                         }
                     }
                 }
-            }else if (npc == "weapon_master")
+            }else if (npc == "blacksmith")
             {
                 var storyList = storyMap[npc].dialogue;
                 foreach (var s in storyList)

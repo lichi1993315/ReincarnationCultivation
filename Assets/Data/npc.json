@@ -322,7 +322,8 @@
                     "name_en": "mining",
                     "condition": "",
                     "attribute": "",
-                    "threshold": "2"
+                    "threshold": "2",
+                    "awardId": "crude_iron_ore"
                 }
             },
             {
