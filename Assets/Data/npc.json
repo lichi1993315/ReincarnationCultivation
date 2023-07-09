@@ -120,6 +120,38 @@
                     "awardId": "BAS",
                     "punishId": "BAF"
                 }
+            },
+            {
+                "content_zh": [
+                    "世间万法，本自同根，炼丹如练剑，练剑也如炼丹。等你何时炼丹一途有足够的造诣，我自会把这柄“丹剑”借你一阅。否则即便给你，也与你无益。"
+                ],
+                "content_en": [
+                    "All phenomena in the world originate from the same root. Alchemy is akin to swordsmanship, and swordsmanship is akin to alchemy. When you have achieved sufficient mastery on the path of alchemy, I will lend you this 'Dan Sword' for your perusal. Otherwise, even if I were to give it to you, it would be of no benefit."
+                ],
+                "mission": {
+                    "type": "观摩炼丹师的剑（失败）",
+                    "name_zh": "观摩炼丹师的剑（失败）",
+                    "name_en": "Observe and learn from the sword of the alchemist(failed)",
+                    "condition": "refining_pills<6",
+                    "attribute": "",
+                    "threshold": ""
+                }
+            },
+            {
+                "content_zh": [
+                    "吾观你丹道、器道都小有所成，甚是欣慰，此剑就借你一观，望你融会贯通。"
+                ],
+                "content_en": [
+                    "I see that your alchemy and swordsmithing skills have improved, and I am pleased with your progress. I will lend you this sword for your observation, hoping that you can fully comprehend its essence."
+                ],
+                "mission": {
+                    "type": "观摩炼丹师的剑（成功）",
+                    "name_zh": "观摩炼丹师的剑（成功）",
+                    "name_en": "Observe and learn from the sword of the alchemist(success)",
+                    "condition": "refining_pills>=6",
+                    "attribute": "",
+                    "threshold": ""
+                }
             }
         ]
     },
@@ -237,6 +269,140 @@
                     "failId": "BBF",
                     "awardId": "BBS",
                     "punishId": "BBF"
+                }
+            },
+            {
+                "content_zh": [
+                    "对吾辈而言，自身修行才是立身之本。兵器、丹药只是辅助。我观你功法稀疏平常，缺整日醉心与炼器，实属歧途，此剑我无法借你，带你哪日功法精进，再来找我吧。"
+                ],
+                "content_en": [
+                    "For us, self-cultivation is the foundation of our standing. Weapons and elixirs are merely auxiliary. I observe that your martial arts are sparse and ordinary, lacking dedication to refining your skills. It is indeed a wrong path. I cannot lend you this sword. When your martial arts improve one day, come and find me again."
+                ],
+                "mission": {
+                    "type": "观摩藏经阁长老的剑（失败）",
+                    "name_zh": "观摩藏经阁长老的剑（失败）",
+                    "name_en": "Observe and learn from the sword of the bookkeeper(failed)",
+                    "condition": "cultivation<6",
+                    "attribute": "",
+                    "threshold": ""
+                }
+            },
+            {
+                "content_zh": [
+                    "你虽然整日醉心于炼器，但是修行也并没有落下，实属不易。此剑“破军”便借你一观，除此之外，阁中还有一本《百兵谱》你也一并拿去，好生专研"
+                ],
+                "content_en": [
+                    "\nAlthough you are immersed in refining tools all day long, you have not neglected your cultivation, which is truly remarkable. I will lend you a look at this sword called \"Breaking the Army\". In addition, there is also a book called \"Hundred Weapons Catalog\" in the pavilion. You can take it along and study it carefully."
+                ],
+                "mission": {
+                    "type": "观摩藏经阁长老的剑（成功）",
+                    "name_zh": "观摩藏经阁长老的剑（成功）",
+                    "name_en": "Observe and learn from the sword of the bookkeeper(success)",
+                    "condition": "cultivation>=6",
+                    "attribute": "",
+                    "threshold": ""
+                }
+            }
+        ]
+    },
+    {
+        "id": "weapon_master",
+        "regionId": "weapon_house",
+        "dialogue": [
+            {
+                "content_zh": [
+                    "小子，我看你骨骼惊奇，是个学炼器的好苗子，要不要和老夫学上一学。他日，百般兵器，信手拈来岂不快哉？这炼器一途，非一朝一夕之攻，你若是感兴趣，那还得从最简单的矿石知识学起。最近门派刚发现了一片新的矿脉，包含粗铁、精铁等基本矿石，和寒铁等稀有矿石，你就先去那边学习基本的挖矿、筛选、冶炼相关知识吧。"
+                ],
+                "content_en": [
+                    "Kid, I see your extraordinary talent. You're a promising candidate for learning weapon forging. How about learning a thing or two from me? In the future, wouldn't it be delightful to effortlessly wield all sorts of weapons? The path of forging is not something achieved overnight. If you're interested, you'll have to start with the basics of mining knowledge. Recently, our sect has discovered a new vein containing basic ores like crude iron and refined iron, as well as rare ores like frigid iron. You should go there first and learn the basic knowledge of mining, screening, and smelting."
+                ],
+                "mission": {
+                    "type": "挖矿",
+                    "name_zh": "挖矿",
+                    "name_en": "mining",
+                    "condition": "",
+                    "attribute": "",
+                    "threshold": "2"
+                }
+            },
+            {
+                "content_zh": [
+                    "不错不错，我看你已经基本掌握了矿石的基本知识，接下来可以开始学习炼器了。鉴于你当前的水平，我就先教你如何锻造铁剑吧。你要记住，万法不离其宗，你学会了此种炼器方法之后，可以用不同的矿石进行锻造，从而得到不同属性的武器。"
+                ],
+                "content_en": [
+                    "Good, good. I see that you have already grasped the basic knowledge of ores. Now, you can start learning the art of crafting. Considering your current level, I will teach you how to forge an iron sword first. Remember, all methods are rooted in the same principles. Once you have learned this particular crafting method, you can use different ores to forge weapons with different attributes."
+                ],
+                "mission": {
+                    "type": "锻造",
+                    "name_zh": "锻造",
+                    "name_en": "forging",
+                    "condition": "refining_equipment>=2",
+                    "attribute": "refining_equipment",
+                    "threshold": "2"
+                }
+            },
+            {
+                "content_zh": [
+                    "炼器一途，讲究千锤百炼。之前传授你的武器炼制之法，仅仅算是粗炼，还称不上一把法器。你还需要不停地对武器进行精炼。看在你小有天赋，态度也还算积极，我就传授你几种强化之法，但材料可得你自己提供"
+                ],
+                "content_en": [
+                    "The path of refining tools emphasizes repeated tempering. The method of weapon refining I taught you earlier was merely a rough refinement, far from being considered a magical tool. You still need to continuously refine your weapon. Considering your talent and relatively positive attitude, I will teach you several methods of enhancement, but you will have to provide the materials yourself."
+                ],
+                "mission": {
+                    "type": "強化",
+                    "name_zh": "強化",
+                    "name_en": "strengthen",
+                    "condition": "refining_equipment>4",
+                    "attribute": "refining_equipment",
+                    "threshold": "4"
+                }
+            },
+            {
+                "content_zh": [
+                    "师傅领进门，修行靠个人。炼器相关的基本知识你已经学习得差不多了，接下来就靠你自己摸索了。门派之中有不少人身负神兵利器，你可以借来观摩，从而提高自己对炼器的理解，等你炼器打到15之后，再来找我吧。"
+                ],
+                "content_en": [
+                    "Master leads the way, but practice relies on the individual. You have learned the basic knowledge related to refining tools. From now on, it's up to you to explore on your own. Within the sect, there are many people who possess divine weapons. You can borrow them for observation to enhance your understanding of refining tools. Once you reach a proficiency level of 15 in refining tools, come and find me again."
+                ],
+                "mission": {
+                    "type": "观摩",
+                    "name_zh": "观摩",
+                    "name_en": "observe and learn",
+                    "condition": "refining_equipment>6",
+                    "attribute": "refining_equipment",
+                    "threshold": "6"
+                }
+            },
+            {
+                "content_zh": [
+                    "最近我炼器缺一块寒铁，你若是能帮我找到，借你看一看我的“七星剑”也不是不行。寒铁需夜间去采集，且它外形与普通矿石无异，需要你又足够的炼器知识，才能从矿脉中找到。"
+                ],
+                "content_en": [
+                    "Recently, I've been missing a piece of cold iron for my refining work. If you can help me find it, I can let you take a look at my \"Seven Star Sword.\" Cold iron can only be collected at night, and its appearance is indistinguishable from ordinary ore. You need to have sufficient knowledge of refining in order to find it within the veins."
+                ],
+                "mission": {
+                    "type": "观摩神兵阁长老的剑",
+                    "name_zh": "观摩神兵阁长老的剑",
+                    "name_en": "Observe and learn from the sword of the weapon master",
+                    "condition": "寒铁x1",
+                    "attribute": "",
+                    "threshold": ""
+                }
+            },
+            {
+                "content_zh": [
+                    "为师观你在短短时间内便已在炼器一途登堂入室，深感欣慰，我门派数十年来还未有如此天赋异禀的苗子，实属不易。今日就传你斩龙剑的炼制手法，希望你能好生领悟。"
+                ],
+                "content_en": [
+                    "As your master, I have observed that you have already made remarkable progress in the art of refining weapons in such a short period of time. I feel deeply gratified. In our sect's several decades of existence, we have yet to come across such a naturally gifted disciple like you. It is truly remarkable. Today, I will pass on to you the technique of forging the Dragon Slayer Sword, hoping that you can comprehend it well."
+                ],
+                "mission": {
+                    "type": "斩龙剑",
+                    "name_zh": "斩龙剑",
+                    "name_en": "Dragon Chopping Sword",
+                    "condition": "refining_equipment>=12",
+                    "attribute": "",
+                    "threshold": ""
                 }
             }
         ]
